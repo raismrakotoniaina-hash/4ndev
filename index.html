@@ -3403,5 +3403,120 @@ content="4N Dev conçoit des applications web, mobiles, des solutions IA, des au
   
     document.getElementById("current-year").textContent =  
       new Date().getFullYear();  
-  </script>  </body>  
+  </script> <script>
+  (() => {
+    "use strict";
+
+    const FORMSPREE_URL = "https://formspree.io/f/mzebyjyn";
+    const oldForm = document.getElementById("project-form");
+
+    if (!oldForm) return;
+
+    /*
+      Clone: manala ilay ancien JavaScript listener
+      "Préparer ma demande" izay efa tao amin'ilay fichier.
+    */
+    const form = oldForm.cloneNode(true);
+    oldForm.replaceWith(form);
+
+    form.action = FORMSPREE_URL;
+    form.method = "POST";
+
+    /* Manala ireo boutons sy résumé ancien. */
+    const preparedRequest = form.querySelector("#prepared-request");
+    if (preparedRequest) {
+      preparedRequest.remove();
+    }
+
+    /* Ovaina ilay texte diso hoe tsy mandefa message ilay form. */
+    const formNote = form.querySelector(".form-note");
+    if (formNote) {
+      formNote.textContent =
+        "Vos informations sont envoyées de manière sécurisée à 4N Dev.";
+    }
+
+    /* Ovaina ilay texte amin'ny côté gauche, tsy manova design. */
+    const contactText = document.querySelector(".contact-copy > p");
+    if (contactText) {
+      contactText.textContent =
+        "Présentez-nous votre besoin. Votre demande sera envoyée directement à 4N Dev.";
+    }
+
+    const steps = document.querySelectorAll(".contact-step");
+    if (steps.length >= 3) {
+      steps[0].innerHTML = "<span>01</span>Décrivez votre projet";
+      steps[1].innerHTML = "<span>02</span>Envoyez votre demande";
+      steps[2].innerHTML = "<span>03</span>Recevez notre réponse rapidement";
+    }
+
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    if (!submitButton) return;
+
+    /* Tazonina ilay icône SVG sy design efa misy. */
+    const arrowIcon = submitButton.querySelector("svg");
+    const arrowIconHTML = arrowIcon ? arrowIcon.outerHTML : "";
+
+    const defaultButtonHTML = `
+      Envoyer ma demande
+      ${arrowIconHTML}
+    `;
+
+    submitButton.innerHTML = defaultButtonHTML;
+
+    const status = document.createElement("p");
+    status.className = "form-status";
+    status.setAttribute("role", "status");
+    status.setAttribute("aria-live", "polite");
+    status.style.margin = "14px 0 0";
+    status.style.fontSize = "0.9rem";
+    status.style.fontWeight = "700";
+    status.style.textAlign = "center";
+    form.appendChild(status);
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.style.opacity = "0.75";
+      submitButton.style.cursor = "wait";
+      submitButton.textContent = "Envoi en cours...";
+      status.textContent = "";
+
+      try {
+        const response = await fetch(FORMSPREE_URL, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Échec de l'envoi");
+        }
+
+        status.textContent =
+          "Votre demande a bien été envoyée. Nous vous répondrons rapidement.";
+        status.style.color = "#4be0aa";
+
+        form.reset();
+      } catch (error) {
+        status.textContent =
+          "L’envoi a échoué. Vérifiez votre connexion puis réessayez.";
+        status.style.color = "#ff6b86";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.style.opacity = "";
+        submitButton.style.cursor = "";
+        submitButton.innerHTML = defaultButtonHTML;
+      }
+    });
+  })();
+  </body>  
   </html>
