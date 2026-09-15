@@ -10,7 +10,9 @@
     :root{--bg:#050711;--surface:rgba(255,255,255,.06);--border:rgba(255,255,255,.12);--text:#f6f7ff;--muted:#a9aec4;--gradient:linear-gradient(135deg,#2de2ff,#2f8cff 35%,#8b5cff 70%,#bd55ff)}
     *{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);background:radial-gradient(circle at 15% 10%,rgba(47,140,255,.14),transparent 30%),radial-gradient(circle at 85% 15%,rgba(139,92,255,.14),transparent 32%),var(--bg);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
     a{color:inherit;text-decoration:none}.wrap{width:min(100% - 32px,760px);margin:auto;padding:32px 0 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:28px}.brand{font-weight:900;font-size:1.1rem}.back{padding:10px 15px;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
-    .card{padding:28px;border:1px solid var(--border);border-radius:24px;background:var(--surface);backdrop-filter:blur(18px);box-shadow:0 20px 70px rgba(0,0,0,.4)}h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.08;margin:0 0 12px}p{color:var(--muted);margin:0 0 24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:8px}.full{grid-column:1/-1}label{font-weight:700;font-size:.92rem}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:13px;background:rgba(0,0,0,.2);color:var(--text);padding:13px 14px;outline:none}textarea{min-height:150px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:#5f8cff;box-shadow:0 0 0 3px rgba(95,140,255,.14)}button{width:100%;margin-top:20px;min-height:52px;border:0;border-radius:14px;color:#fff;background:var(--gradient);font-weight:900;font-size:1rem;cursor:pointer}small{display:block;margin-top:14px;color:var(--muted);text-align:center}@media(max-width:640px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:22px}.top{align-items:flex-start}}
+    .card{padding:28px;border:1px solid var(--border);border-radius:24px;background:var(--surface);backdrop-filter:blur(18px);box-shadow:0 20px 70px rgba(0,0,0,.4)}h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.08;margin:0 0 12px}p{color:var(--muted);margin:0 0 24px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:8px}.full{grid-column:1/-1}label{font-weight:700;font-size:.92rem}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:13px;background:rgba(0,0,0,.2);color:var(--text);padding:13px 14px;outline:none}textarea{min-height:150px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:#5f8cff;box-shadow:0 0 0 3px rgba(95,140,255,.14)}button{width:100%;margin-top:20px;min-height:52px;border:0;border-radius:14px;color:#fff;background:var(--gradient);font-weight:900;font-size:1rem;cursor:pointer}small{display:block;margin-top:14px;color:var(--muted);text-align:center}
+    .plans{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0 0 24px}.plan{position:relative;padding:20px;border:1px solid var(--border);border-radius:18px;background:rgba(0,0,0,.18);cursor:pointer;transition:.2s}.plan:hover{transform:translateY(-2px);border-color:rgba(95,140,255,.6)}.plan input{position:absolute;opacity:0;pointer-events:none}.plan:has(input:checked){border-color:#5f8cff;box-shadow:0 0 0 2px rgba(95,140,255,.25),0 12px 30px rgba(47,140,255,.12);background:rgba(95,140,255,.1)}.plan h3{margin:0 0 4px;font-size:1.08rem}.price{font-weight:900;font-size:1.2rem;margin-bottom:6px}.plan p{font-size:.86rem;margin:0}.badge{position:absolute;top:10px;right:10px;font-size:.68rem;font-weight:900;padding:4px 7px;border-radius:999px;background:var(--gradient);color:#fff}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:22px}.top{align-items:flex-start}.plans{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -20,6 +22,36 @@
       <h1>Demander un <span style="background:var(--gradient);color:transparent;background-clip:text;-webkit-background-clip:text">devis</span></h1>
       <p>Décrivez votre projet. Votre demande sera envoyée à 4N Dev via le même système Formspree déjà utilisé par le site.</p>
       <form action="https://formspree.io/f/mzebyjyn" method="POST">
+        <div class="field full">
+          <label>Choisissez votre plan</label>
+          <div class="plans">
+            <label class="plan">
+              <input type="radio" name="plan" value="Starter - 500 000 Ar" required>
+              <h3>Starter</h3>
+              <div class="price">500 000 Ar</div>
+              <p>Site vitrine essentiel pour démarrer.</p>
+            </label>
+            <label class="plan">
+              <input type="radio" name="plan" value="Business - 1 200 000 Ar">
+              <span class="badge">POPULAIRE</span>
+              <h3>Business</h3>
+              <div class="price">1 200 000 Ar</div>
+              <p>Site professionnel complet pour PME.</p>
+            </label>
+            <label class="plan">
+              <input type="radio" name="plan" value="Pro - 2 500 000 Ar">
+              <h3>Pro</h3>
+              <div class="price">2 500 000 Ar</div>
+              <p>Site avancé avec SEO et fonctionnalités étendues.</p>
+            </label>
+            <label class="plan">
+              <input type="radio" name="plan" value="Sur mesure - À partir de 4 500 000 Ar">
+              <h3>Sur mesure</h3>
+              <div class="price">À partir de 4 500 000 Ar</div>
+              <p>Projet personnalisé selon vos besoins.</p>
+            </label>
+          </div>
+        </div>
         <div class="grid">
           <div class="field"><label for="name">Nom / entreprise</label><input id="name" name="name" required></div>
           <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required></div>
