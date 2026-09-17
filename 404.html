@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>404 — Page introuvable | 4N Dev</title>
+
+  <meta
+    name="description"
+    content="La page demandée est introuvable. Retournez sur 4N Dev — Studio digital & solutions IA."
+  >
+
+  <meta name="robots" content="noindex, nofollow">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #050711;
+      --text: #f5f7ff;
+      --muted: #9ca6c4;
+      --line: rgba(255,255,255,.12);
+      --cyan: #5ee7ff;
+      --blue: #668cff;
+      --violet: #a66cff;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      color: var(--text);
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(94,231,255,.12),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 80% 75%,
+          rgba(166,108,255,.14),
+          transparent 35%
+        ),
+        var(--bg);
+    }
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, transparent, black, transparent);
+    }
+
+    .orb {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      filter: blur(70px);
+      opacity: .18;
+      pointer-events: none;
+    }
+
+    .orb.one {
+      top: -120px;
+      left: -80px;
+      background: var(--cyan);
+    }
+
+    .orb.two {
+      right: -100px;
+      bottom: -100px;
+      background: var(--violet);
+    }
+
+    .card {
+      position: relative;
+      width: min(680px, 100%);
+      padding: 48px 28px;
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(10,14,30,.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.45),
+        inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: -.03em;
+    }
+
+    .logo-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 11px;
+      background:
+        linear-gradient(
+          135deg,
+          var(--cyan),
+          var(--blue),
+          var(--violet)
+        );
+      box-shadow: 0 0 28px rgba(102,140,255,.3);
+      color: #fff;
+      font-size: .75rem;
+    }
+
+    .error-code {
+      margin-bottom: 4px;
+      font-size: clamp(6rem, 24vw, 10rem);
+      line-height: .85;
+      font-weight: 950;
+      letter-spacing: -.09em;
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          var(--cyan),
+          var(--blue),
+          var(--violet)
+        );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      filter: drop-shadow(0 0 30px rgba(94,231,255,.12));
+    }
+
+    h1 {
+      margin-top: 24px;
+      font-size: clamp(1.7rem, 6vw, 2.5rem);
+      letter-spacing: -.045em;
+    }
+
+    p {
+      max-width: 500px;
+      margin: 14px auto 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 800;
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--violet)
+        );
+      box-shadow: 0 12px 30px rgba(102,140,255,.25);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .footer {
+      margin-top: 32px;
+      color: #69738f;
+      font-size: .8rem;
+    }
+
+    @media (max-width: 520px) {
+      .card {
+        padding: 38px 20px;
+        border-radius: 24px;
+      }
+
+      .actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+
+  <main class="card">
+
+    <div class="logo">
+      <div class="logo-mark">4N</div>
+      <span>4N Dev</span>
+    </div>
+
+    <div class="error-code">404</div>
+
+    <h1>Page introuvable</h1>
+
+    <p>
+      La page que vous recherchez n'existe pas,
+      a été déplacée ou l'adresse est incorrecte.
+    </p>
+
+    <div class="actions">
+      <a class="btn btn-primary" href="/4ndev/">
+        ← Retour à l'accueil
+      </a>
+
+      <a class="btn btn-secondary" href="/4ndev/devis.html">
+        Demander un projet
+      </a>
+    </div>
+
+    <div class="footer">
+      4N Dev — Studio digital & solutions IA
+    </div>
+
+  </main>
+
+</body>
+  </html>
