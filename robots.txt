@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://raismrakotoniaina-hash.github.io/4ndev/sitemap.xml
