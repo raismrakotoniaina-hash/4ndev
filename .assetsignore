@@ -1,0 +1,11 @@
+.git/**
+.wrangler/**
+node_modules/**
+*.env
+*.env.*
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
